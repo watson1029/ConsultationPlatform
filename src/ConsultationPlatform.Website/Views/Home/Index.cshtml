@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "关企磋商";
+}
+<style type="text/css">
+    img:hover {
+        cursor:pointer;
+    }
+    img.building:hover {
+        cursor:not-allowed;
+    }
+</style>
+<div class="container">
+    <table class="table">
+        <tr style="text-align:center;">
+            <td>
+                <img src="~/images/pic/UploadDocument.png" 
+                     onmouseover="this.src =  '@Url.Content("~/images/pic/UploadDocument2.png")'" 
+                     onmouseout="this.src = '@Url.Content("~/images/pic/UploadDocument.png")'"
+                     onclick="location.href = '@Url.Content("~/Home/UploadDocument")'"/>
+            </td>
+        </tr>
+        <tr style="text-align:center;">
+            <td>
+                <img src="~/images/pic/CustomService.png" 
+                     onmouseover="this.src = '@Url.Content("~/images/pic/CustomService2.png")'" 
+                     onmouseout="this.src = '@Url.Content("~/images/pic/CustomService.png")'"
+                     onclick="location.href = '@Url.Content("~/Home/ConsultationList")'"/>
+            </td>
+        </tr>
+    </table>
+</div>

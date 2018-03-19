@@ -1,0 +1,43 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<table class="table">
+    <thead style="text-align:center;font-weight:bold;">
+        <tr>
+            <td width="45%">磋商内容</td>
+            <td width="15%">磋商时间</td>
+            <td width="10%">磋商状态</td>
+            <td width="20%">相关报关单</td>
+            <td width="10%">操作</td>
+        </tr>
+    </thead>
+    <tbody style="text-align:center;">
+        @foreach (CstInfoLib.Data.Consultation csl in (ViewData["cstInfo"] as CstInfoLib.Data.ConsultationInfo).Consultation)
+        { 
+            <tr>
+                <td style="vertical-align:middle;">@csl.MESSAGE</td>
+                <td style="vertical-align:middle;">@csl.BEGINDATE.ToString("yyyy年MM月dd日HH时") ~ @csl.ENDDATE.ToString("yyyy年MM月dd日HH时")</td>
+                <td style="vertical-align:middle;">@csl.STATUS</td>
+                <td style="vertical-align:middle;">
+                    @foreach (var str in csl.ENTRY_ID.Split(','))
+                    {
+                        @str<br />
+                    }
+                </td>
+                <td style="vertical-align:middle;">
+                    @if (csl.STATUS.Equals("接受"))
+                    {
+                        <a class="btn btn-default" asp-controller="Home" asp-action="CustomService">在线磋商</a>
+                    }
+                    else if(!csl.STATUS.Equals("拒绝") && !csl.STATUS.Equals("结束"))
+                    {
+                        <a class="btn btn-default" href="AcceptInvite/?consultationId=@csl.CONSULTATION_ID">接受邀请</a>
+                        <a class="btn btn-default" href="RejectInvite/?consultationId=@csl.CONSULTATION_ID">拒绝邀请</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
